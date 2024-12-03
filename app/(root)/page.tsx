@@ -8,8 +8,7 @@ import { Product } from "@/sanity/types";
 export default async function Home() {
   const products = await client.fetch(PRODUCT_QUERY);
   const bannerData = await client.fetch(BANNER_QUERY);
-  console.log(products);
-  console.log(bannerData);
+
   return (
     <>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />

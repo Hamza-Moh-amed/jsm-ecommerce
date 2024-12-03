@@ -28,15 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <StateContext>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <StateContext>
           <Toaster />
           {children}
-        </body>
-      </html>
-    </StateContext>
+        </StateContext>
+      </body>
+    </html>
   );
 }

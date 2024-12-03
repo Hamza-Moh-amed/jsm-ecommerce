@@ -10,8 +10,6 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const product = await client.fetch(PRODUCT_BY_ID_QUERY, { id });
   const products = await client.fetch(PRODUCT_QUERY);
 
-  console.log(product);
-  console.log(products);
   return (
     <div>
       <ProductDetails product={product} />
