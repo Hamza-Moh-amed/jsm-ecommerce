@@ -46,7 +46,10 @@ export const StateContext = ({ children }: { children: ReactNode }) => {
     setTotalPrice((prev) => prev + product.price! * quantity);
     setTotalQuantities((prev) => prev + quantity);
 
-    toast({ title: "Cart Updated Successfully" });
+    toast({
+      title: "Cart Updated",
+      description: `${product.name} added to cart. Total: $${totalPrice + product.price! * quantity}`,
+    });
   };
 
   {

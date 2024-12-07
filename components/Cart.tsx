@@ -2,20 +2,9 @@
 import { useStateContext } from "@/context/StateContext";
 import React, { useRef } from "react";
 import { Button } from "./ui/button";
-import {
-  ArrowLeftIcon,
-  DeleteIcon,
-  Minus,
-  MinusIcon,
-  Plus,
-  PlusIcon,
-  ShoppingBag,
-  ShoppingBagIcon,
-  ShoppingBasket,
-  X,
-} from "lucide-react";
+import { ArrowLeftIcon, Minus, Plus, ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
-import { Product } from "@/sanity/types";
+
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -60,7 +49,7 @@ const Cart = () => {
 
         <div className="product-container">
           {cartItems.length >= 1 &&
-            cartItems.map((item: Product) => (
+            cartItems.map((item: CartItems) => (
               <div className="product" key={item._id}>
                 <Image
                   src={urlFor(item.image![0])}
