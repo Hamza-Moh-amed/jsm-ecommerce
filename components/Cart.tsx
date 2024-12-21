@@ -2,20 +2,9 @@
 import { useStateContext } from "@/context/StateContext";
 import React, { useRef } from "react";
 import { Button } from "./ui/button";
-import {
-  ArrowLeftIcon,
-  DeleteIcon,
-  Minus,
-  MinusIcon,
-  Plus,
-  PlusIcon,
-  ShoppingBag,
-  ShoppingBagIcon,
-  ShoppingBasket,
-  X,
-} from "lucide-react";
+import { ArrowLeftIcon, Minus, Plus, ShoppingBag, X } from "lucide-react";
 import Link from "next/link";
-import { Product } from "@/sanity/types";
+
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 
@@ -27,6 +16,7 @@ const Cart = () => {
     cartItems,
     setShowCart,
     toggleCartItemQuantity,
+    onRemove,
   } = useStateContext();
   return (
     <div className="cart-wrapper" ref={cartRef}>
@@ -59,17 +49,16 @@ const Cart = () => {
 
         <div className="product-container">
           {cartItems.length >= 1 &&
-            cartItems.map((item: Product, index: number) => (
+            cartItems.map((item: CartItems) => (
               <div className="product" key={item._id}>
-                {item.image && (
-                  <Image
-                    src={urlFor(item.image[0])}
-                    alt="image"
-                    width={400}
-                    height={400}
-                    className="rounded-[15px] bg-[#ebebeb]  w-40 h-40 cursor-pointer hover:bg-[rgb(248,210,211)] transition duration-300 ease-in-out"
-                  />
-                )}
+                <Image
+                  src={urlFor(item.image![0])}
+                  alt="image"
+                  width={400}
+                  height={400}
+                  className="rounded-[15px] bg-[#ebebeb]  w-40 h-40 cursor-pointer hover:bg-[rgb(248,210,211)] transition duration-300 ease-in-out"
+                />
+
                 <div className="flex flex-col justify-start">
                   <div className="flex justify-between items-center gap-32">
                     <h1 className=" font-bold">{item.name}</h1>
@@ -91,7 +80,7 @@ const Cart = () => {
                         <Plus className=" size-4  " />
                       </button>
                     </div>
-                    <button type="button">
+                    <button type="button" onClick={() => onRemove(item)}>
                       <X />
                     </button>
                   </div>
